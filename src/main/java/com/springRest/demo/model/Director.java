@@ -6,6 +6,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -14,8 +15,10 @@ import java.io.Serializable;
 public class Director implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    @GenericGenerator(name = "num", strategy = "increment")
+    @GeneratedValue(generator = "num")
+    @Column(name = "id_director")
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -23,9 +26,8 @@ public class Director implements Serializable {
     @Column(name = "count_of_oscars")
     private int countOfOscars;
 
-    @OneToMany
-    @JoinColumn(name = "id_film")
-    private Film filmEntity;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "directorByFilm")
+    private Collection<Film> filmEntity;
 
     public Director() {
     }

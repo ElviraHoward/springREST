@@ -1,9 +1,10 @@
 package com.springRest.demo.model;
 
-import javax.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -12,7 +13,9 @@ import org.hibernate.annotations.GenericGenerator;
 public class Film {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GenericGenerator(name = "num", strategy = "increment")
+    @GeneratedValue(generator = "num")
+    @Column(name = "id_film")
     private Long id;
 
     @Column(name = "name")
@@ -24,9 +27,9 @@ public class Film {
     @Column(name = "rating")
     private double rating;
 
-    @ManyToOne
-    @JoinColumn(name = "id_director")
-    private Director directorEntity;
+    @ManyToOne(cascade= {CascadeType.REFRESH}, fetch=FetchType.LAZY)
+    @JoinColumn(name = "director", referencedColumnName = "id_director")
+    private Director directorByFilm;
 
     public Film() {
     }
@@ -37,7 +40,7 @@ public class Film {
                 "name='" + name + '\'' +
                 ", releaseDate=" + releaseDate +
                 ", rating=" + rating +
-                ", director=" + directorEntity +
+                ", director=" + directorByFilm +
                 '}';
     }
 }

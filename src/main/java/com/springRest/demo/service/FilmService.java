@@ -18,20 +18,17 @@ public class FilmService {
         return filmRepository.save(film);
     }
 
-    public Film findById (Long id_film) {
-        return filmRepository.getOne(id_film);
+    public Film findById(Long id_film) {
+        return filmRepository.findById(id_film).get();
     }
 
-    public Film edit(Film editedFilm) {
-        Film film = filmRepository.getOne(editedFilm.getId());
-        if (film != null) {
-            film.setName(editedFilm.getName());
-            film.setReleaseDate(editedFilm.getReleaseDate());
-            film.setRating(editedFilm.getRating());
-            film.setDirectorEntity(editedFilm.getDirectorEntity());
-            film = filmRepository.save(film);
-        }
-        return film;
+    public void edit(Film film) {
+        Film prevFilm = filmRepository.findById(film.getId()).get();
+        film.setName(prevFilm.getName());
+        film.setReleaseDate(prevFilm.getReleaseDate());
+        film.setRating(prevFilm.getRating());
+        film.setDirectorByFilm(prevFilm.getDirectorByFilm());
+        filmRepository.save(film);
     }
 
     public List<Film> findAll() {
@@ -39,7 +36,7 @@ public class FilmService {
         return films != null ? films : new ArrayList<>();
     }
 
-    public void delete(Film film) {
-        filmRepository.delete(film);
+    public void delete(Long id_film) {
+        filmRepository.deleteById(id_film);
     }
 }
