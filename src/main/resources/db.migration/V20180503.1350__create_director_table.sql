@@ -1,0 +1,1 @@
+CREATE  TABLE director (id BIGINT AUTO_INCREMENT, name VARCHAR(255), count_of_oscars INT DEFAULT NULL, primary key(id_director));

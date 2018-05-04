@@ -1,0 +1,1 @@
+CREATE  TABLE film (id BIGINT AUTO_INCREMENT, name VARCHAR(255), release_date INT, rating DOUBLE,  primary key(id_film));

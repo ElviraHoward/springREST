@@ -1,0 +1,1 @@
+INSERT  INTO director (name, count_of_oscars) VALUES ('Christopher Nolan', 1);
