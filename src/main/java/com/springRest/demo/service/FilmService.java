@@ -18,17 +18,8 @@ public class FilmService {
         return filmRepository.save(film);
     }
 
-    public Film findById(Long id_film) {
+    public Film getById(Long id_film) {
         return filmRepository.findById(id_film).get();
-    }
-
-    public void edit(Film film) {
-        Film prevFilm = filmRepository.findById(film.getId()).get();
-        film.setName(prevFilm.getName());
-        film.setReleaseDate(prevFilm.getReleaseDate());
-        film.setRating(prevFilm.getRating());
-        film.setDirectorByFilm(prevFilm.getDirectorByFilm());
-        filmRepository.save(film);
     }
 
     public List<Film> findAll() {

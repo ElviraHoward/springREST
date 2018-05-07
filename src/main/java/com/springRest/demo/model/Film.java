@@ -5,12 +5,13 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "film")
-public class Film {
+public class Film implements Serializable {
 
     @Id
     @GenericGenerator(name = "num", strategy = "increment")

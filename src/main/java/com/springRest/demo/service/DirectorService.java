@@ -18,16 +18,8 @@ public class DirectorService {
         return directorRepository.save(director);
     }
 
-    public Director findById(Long id_director) {
+    public Director getById(Long id_director) {
         return directorRepository.findById(id_director).get();
-    }
-
-    public void edit(Director director) {
-        Director prevDirector = directorRepository.findById(director.getId()).get();
-        director.setName(prevDirector.getName());
-        director.setCountOfOscars(prevDirector.getCountOfOscars());
-        director.setFilmEntity(prevDirector.getFilmEntity());
-        directorRepository.save(prevDirector);
     }
 
     public List<Director> findAll() {
