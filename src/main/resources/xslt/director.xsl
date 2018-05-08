@@ -9,6 +9,13 @@
             </head>
             <body>
 
+                <p>
+                    <a href="../DirectorController/director">Режиссеры</a>
+                </p>
+                <p>
+                    <a href="../FilmController/film">Фильмы</a>
+                </p>
+
                 <table border="1">
 
                     <tr>
