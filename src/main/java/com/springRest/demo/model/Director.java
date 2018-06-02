@@ -1,17 +1,15 @@
 package com.springRest.demo.model;
 
-import javax.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Collection;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "director")
+@XmlRootElement
 public class Director implements Serializable {
 
     @Id
@@ -39,5 +37,37 @@ public class Director implements Serializable {
                 ", countOfOscars=" + countOfOscars +
                 ", film=" + filmEntity +
                 '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCountOfOscars() {
+        return countOfOscars;
+    }
+
+    public void setCountOfOscars(int countOfOscars) {
+        this.countOfOscars = countOfOscars;
+    }
+
+    public Collection<Film> getFilmEntity() {
+        return filmEntity;
+    }
+
+    public void setFilmEntity(Collection<Film> filmEntity) {
+        this.filmEntity = filmEntity;
     }
 }
