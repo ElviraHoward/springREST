@@ -3,12 +3,15 @@ package com.springRest.demo.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "film")
-@XmlRootElement
+@Table(name = "film",  schema = "spring")
+@XmlRootElement(name = "film")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Film implements Serializable {
 
     @Id
@@ -26,21 +29,12 @@ public class Film implements Serializable {
     @Column(name = "rating")
     private double rating;
 
-    @ManyToOne(cascade= {CascadeType.REFRESH}, fetch=FetchType.LAZY)
-    @JoinColumn(name = "director", referencedColumnName = "id_director")
-    private Director directorByFilm;
-
     public Film() {
     }
 
     @Override
     public String toString() {
-        return "FilmEntity{" +
-                "name='" + name + '\'' +
-                ", releaseDate=" + releaseDate +
-                ", rating=" + rating +
-                ", director=" + directorByFilm +
-                '}';
+        return name;
     }
 
     public Long getId() {
@@ -75,11 +69,4 @@ public class Film implements Serializable {
         this.rating = rating;
     }
 
-    public Director getDirectorByFilm() {
-        return directorByFilm;
-    }
-
-    public void setDirectorByFilm(Director directorByFilm) {
-        this.directorByFilm = directorByFilm;
-    }
 }

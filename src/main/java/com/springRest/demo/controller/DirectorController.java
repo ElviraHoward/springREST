@@ -46,7 +46,6 @@ public class DirectorController {
             Director director = directorService.getById(id_director.get());
             director.setName(directorDto.name);
             director.setCountOfOscars(directorDto.countOfOscars);
-            director.setFilmEntity(directorDto.filmByDirector);
             director = directorService.save(director);
             return new ResponseEntity(director, HttpStatus.OK);
         }
@@ -59,7 +58,6 @@ public class DirectorController {
             Director director = new Director();
             director.setName(directorDto.name);
             director.setCountOfOscars(directorDto.countOfOscars);
-            director.setFilmEntity(directorDto.filmByDirector);
             director = directorService.save(director);
             return new ResponseEntity(director, HttpStatus.OK);
         }
@@ -67,17 +65,14 @@ public class DirectorController {
     }
 
     private static class DirectorDto{
-        private String name;
-        private int countOfOscars;
-        private Collection<Film> filmByDirector;
-
+        private String name = "Director";
+        private int countOfOscars = 5;
         public DirectorDto() {
         }
 
-        public DirectorDto(String name, Integer countOfOscars, Collection<Film> filmByDirector) {
+        public DirectorDto(String name, Integer countOfOscars) {
             this.name = name;
             this.countOfOscars = countOfOscars;
-            this.filmByDirector = filmByDirector;
         }
 
         public String getName() {
@@ -94,14 +89,6 @@ public class DirectorController {
 
         public void setCountOfOscars(int countOfOscars) {
             this.countOfOscars = countOfOscars;
-        }
-
-        public Collection<Film> getFilmByDirector() {
-            return filmByDirector;
-        }
-
-        public void setFilmByDirector(Collection<Film> filmByDirector) {
-            this.filmByDirector = filmByDirector;
         }
     }
 }

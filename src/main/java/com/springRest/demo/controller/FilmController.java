@@ -46,7 +46,6 @@ public class FilmController {
             film.setName(filmDto.name);
             film.setRating(filmDto.rating);
             film.setReleaseDate(filmDto.releaseDate);
-            film.setDirectorByFilm(filmDto.directorByFilm);
             film = filmService.save(film);
             return new ResponseEntity(film, HttpStatus.OK);
         }
@@ -60,7 +59,6 @@ public class FilmController {
             film.setName(filmDto.name);
             film.setRating(filmDto.rating);
             film.setReleaseDate(filmDto.releaseDate);
-            film.setDirectorByFilm(filmDto.directorByFilm);
             film = filmService.save(film);
             return new ResponseEntity(film, HttpStatus.OK);
         }
@@ -68,10 +66,9 @@ public class FilmController {
     }
 
     private static class FilmDto{
-        private String name;
-        private int releaseDate;
-        private double rating;
-        private Director directorByFilm;
+        private String name = "Film";
+        private int releaseDate = 2018;
+        private double rating = 10.0;
 
         public FilmDto() {
         }
@@ -80,7 +77,6 @@ public class FilmController {
             this.name = name;
             this.releaseDate = releaseDate;
             this.rating = rating;
-            this.directorByFilm = directorByFilm;
         }
 
         public String getName() {
@@ -107,12 +103,5 @@ public class FilmController {
             this.rating = rating;
         }
 
-        public Director getDirectorByFilm() {
-            return directorByFilm;
-        }
-
-        public void setDirectorByFilm(Director directorByFilm) {
-            this.directorByFilm = directorByFilm;
-        }
     }
 }
